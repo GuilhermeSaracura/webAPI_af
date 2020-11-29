@@ -21,20 +21,20 @@ import afpoo.afpoo.model.Cliente;
 import afpoo.afpoo.service.Servicecliente;
 
 @RestController
-@RequestMapping("/cliente")
+@RequestMapping("/clientes")
 public class Controllercliente {
     
     @Autowired
     private Servicecliente service;
 
     @GetMapping()
-    public List<Cliente> getCliente(){
+    public List<Cliente> getclientes(){
         return service.getListadeclientes();
     }
 
     @GetMapping("/{codigo}")
-    public ResponseEntity<Cliente> getCliente(@PathVariable int codigo){
-        Cliente cliente = service.getClienteporcodigo(codigo);
+    public ResponseEntity<Cliente> getcliente(@PathVariable int codigo){
+        Cliente cliente = service.getclienteporcodigo(codigo);
         return ResponseEntity.ok(cliente);
     }
 

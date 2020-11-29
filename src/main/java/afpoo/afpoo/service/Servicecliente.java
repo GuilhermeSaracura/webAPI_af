@@ -40,7 +40,7 @@ public class Servicecliente {
         return repositorio.getListadeclientes();
     }
 
-    public Cliente getClienteporcodigo(int codigo){
+    public Cliente getclienteporcodigo(int codigo){
         Optional<Cliente> cli = repositorio.getclienteporcodigo(codigo);
         return cli.orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND,"Cliente não cadastrado"));
     }
@@ -50,6 +50,6 @@ public class Servicecliente {
     }
 
     public void removercliente(int codigo){
-        repositorio.removercliente(getClienteporcodigo(codigo));
+        repositorio.removercliente(getclienteporcodigo(codigo));
     }
 }
