@@ -17,18 +17,18 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import afpoo.afpoo.dto.Reservadto;
 import afpoo.afpoo.model.Reserva;
-import afpoo.afpoo.service.Servicecliente;
+import afpoo.afpoo.service.Servicereserva;
 
 @Controller
 @RequestMapping("/reservas")
 public class ControllerReserva {
     
     @Autowired
-    private Servicecliente service;
+    private Servicereserva service;
 
     @GetMapping()
     public List<Reserva> getreservas(){
-        return service.getListadeclientes();
+        return service.getlistadereservas();
     }
 
     @GetMapping("/{codigo}")
@@ -39,7 +39,7 @@ public class ControllerReserva {
 
     @PostMapping()
     public ResponseEntity<Void> salvar(@RequestBody Reservadto reservadto,HttpServletRequest request,UriComponentsBuilder builder){
-        Reserva reserva = service.criarfromDtOreserva(reservadto);
+        Reserva reserva = service.criarfromDTOreserva(reservadto);
         reserva = service.salvarreserva(reserva);
         UriComponents uriComponents = builder.path(request.getRequestURI()+"/"+reserva.getNum()).build();
         return ResponseEntity.created(uriComponents.toUri()).build();

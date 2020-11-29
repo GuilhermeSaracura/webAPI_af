@@ -22,7 +22,7 @@ public class Repositoryreserva {
         code=1;
     }
 
-    public List<Reserva> getListadereservas(){
+    public List<Reserva> getlistadereservas(){
         return reservas;
     }
 
