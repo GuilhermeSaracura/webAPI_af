@@ -49,7 +49,7 @@ public class Servicereserva {
         return repositorio.salvarreserva(cliente);
     }
 
-    public void removercliente(int codigo){
+    public void removerreserva(int codigo){
         repositorio.removerreserva(getreservaporcodigo(codigo));
     }
 
