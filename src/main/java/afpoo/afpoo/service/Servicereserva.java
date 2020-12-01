@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import afpoo.afpoo.dto.Reservadto;
+import afpoo.afpoo.model.Cliente;
 import afpoo.afpoo.model.Reserva;
+import afpoo.afpoo.model.Veiculo;
 import afpoo.afpoo.repository.Repositoryreserva;
 
 @Service
@@ -17,6 +19,8 @@ public class Servicereserva {
 
     @Autowired
     private Repositoryreserva repositorio;
+    private Servicecliente service1;
+    private Serviceveiculo service2;
 
     public Reserva criarfromDTOreserva(Reservadto dto){
         Reserva reserva = new Reserva();
@@ -45,12 +49,26 @@ public class Servicereserva {
         return res.orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND,"Reserva não cadastrada"));
     }
 
-    public Reserva salvarreserva(Reserva cliente){
-        return repositorio.salvarreserva(cliente);
+    public Reserva salvarreserva(Reserva reserva){
+        Cliente clienteres = reserva.getCliente();
+        Veiculo veiculores = reserva.getVeiculo();
+        service1.getclienteporcodigo(clienteres.getCodigo());
+        service2.getveiculoporcodigo(veiculores.getCodigo());
+        return repositorio.salvarreserva(reserva);
     }
 
     public void removerreserva(int codigo){
         repositorio.removerreserva(getreservaporcodigo(codigo));
+    }
+
+    public List<Reserva> getreservaporcodigocliente(int codigo){
+        Optional<List<Reserva>> res = repositorio.getreservaporcodigocliente(codigo);
+        return res.orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND,"Náo foi encontrado nenhuma reserva"));
+    }
+
+    public List<Reserva> getreservaporcodigoveiculo(int codigo){
+        Optional<List<Reserva>> res = repositorio.getreservaporcodigoveiculo(codigo);
+        return res.orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND,"Náo foi encontrado nenhuma reserva"));
     }
 
 }

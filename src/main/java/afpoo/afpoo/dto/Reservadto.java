@@ -2,13 +2,17 @@ package afpoo.afpoo.dto;
 
 import java.time.LocalDateTime;
 
+import javax.validation.constraints.NotBlank;
+
 import afpoo.afpoo.model.Cliente;
 import afpoo.afpoo.model.Veiculo;
 
 public class Reservadto {
-
+    @NotBlank(message = "Cliente obrigatorio")
     Cliente cliente;
+    @NotBlank(message = "Veiculo obrigatorio")
     Veiculo veiculo;
+    @NotBlank(message = "Data obrigatorio")
     LocalDateTime datainicio;
 
     public Cliente getCliente() {

@@ -17,7 +17,9 @@ import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import afpoo.afpoo.dto.Veiculodto;
+import afpoo.afpoo.model.Reserva;
 import afpoo.afpoo.model.Veiculo;
+import afpoo.afpoo.service.Servicereserva;
 import afpoo.afpoo.service.Serviceveiculo;
 
 @RestController
@@ -26,6 +28,7 @@ public class Controllerveiculo {
     
     @Autowired
     private Serviceveiculo service;
+    private Servicereserva service2;
 
     @GetMapping()
     public List<Veiculo> getveiculos(){
@@ -50,5 +53,11 @@ public class Controllerveiculo {
     public ResponseEntity<Void> remover(@PathVariable int codigo){
         service.removerveiculo(codigo);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/{codigo}/reservas")
+    public List<Reserva> getreservaporveiculo(@PathVariable int codigo){
+        List<Reserva> reservas = service2.getreservaporcodigoveiculo(codigo);
+        return reservas;
     }
 }

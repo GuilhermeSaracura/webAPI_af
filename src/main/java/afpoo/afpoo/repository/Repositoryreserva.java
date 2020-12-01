@@ -8,7 +8,9 @@ import javax.annotation.PostConstruct;
 
 import org.springframework.stereotype.Component;
 
+import afpoo.afpoo.model.Cliente;
 import afpoo.afpoo.model.Reserva;
+import afpoo.afpoo.model.Veiculo;
 
 @Component
 public class Repositoryreserva {
@@ -44,5 +46,39 @@ public class Repositoryreserva {
 
     public void removerreserva(Reserva reserva){
         reservas.remove(reserva);
+    }
+
+    public Optional<List<Reserva>> getreservaporcodigocliente(int codigo){
+        List<Reserva> reservas=null;
+        for(int i=0;i<reservas.size();i++){
+            Reserva res=reservas.get(i);
+            Cliente cliente = res.getCliente();
+            if(cliente.getCodigo()==codigo){
+                reservas.add(res);
+            }
+        }
+        if(reservas==null){
+            return Optional.of(reservas);
+        }
+        else{
+            return Optional.empty();
+        }
+    }
+
+    public Optional<List<Reserva>> getreservaporcodigoveiculo(int codigo){
+        List<Reserva> reservas=null;
+        for(int i=0;i<reservas.size();i++){
+            Reserva res=reservas.get(i);
+            Veiculo veiculo = res.getVeiculo();
+            if(veiculo.getCodigo()==codigo){
+                reservas.add(res);
+            }
+        }
+        if(reservas==null){
+            return Optional.of(reservas);
+        }
+        else{
+            return Optional.empty();
+        }
     }
 }

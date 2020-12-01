@@ -18,7 +18,9 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import afpoo.afpoo.dto.Clientedto;
 import afpoo.afpoo.model.Cliente;
+import afpoo.afpoo.model.Reserva;
 import afpoo.afpoo.service.Servicecliente;
+import afpoo.afpoo.service.Servicereserva;
 
 @RestController
 @RequestMapping("/clientes")
@@ -26,6 +28,8 @@ public class Controllercliente {
     
     @Autowired
     private Servicecliente service;
+    private Servicereserva service2;
+
 
     @GetMapping()
     public List<Cliente> getclientes(){
@@ -50,6 +54,12 @@ public class Controllercliente {
     public ResponseEntity<Void> remover(@PathVariable int codigo){
         service.removercliente(codigo);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/{codigo}/reservas")
+    public List<Reserva> getreservaporcliente(@PathVariable int codigo){
+        List<Reserva> reservas = service2.getreservaporcodigocliente(codigo);
+        return reservas;
     }
 
 
