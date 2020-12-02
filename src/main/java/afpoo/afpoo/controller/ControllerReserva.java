@@ -23,7 +23,7 @@ import afpoo.afpoo.service.Servicereserva;
 
 @Controller
 @RequestMapping("/reservas")
-public class ControllerReserva {
+public class Controllerreserva {
     
     @Autowired
     private Servicereserva service;
