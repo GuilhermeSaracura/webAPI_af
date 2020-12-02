@@ -3,6 +3,7 @@ package afpoo.afpoo.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -43,7 +44,7 @@ public class Controllercliente {
     }
 
     @PostMapping()
-    public ResponseEntity<Void> salvar(@RequestBody Clientedto clientedto, HttpServletRequest request,UriComponentsBuilder builder){
+    public ResponseEntity<Void> salvar(@Valid @RequestBody Clientedto clientedto, HttpServletRequest request,UriComponentsBuilder builder){
         Cliente cliente = service.criarfromDTOcliente(clientedto);
         cliente = service.salvarcliente(cliente);
         UriComponents uriComponents = builder.path(request.getRequestURI()+"/"+cliente.getCodigo()).build();

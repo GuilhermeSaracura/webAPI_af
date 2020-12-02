@@ -12,8 +12,10 @@ public class Reservadto {
     Cliente cliente;
     @NotBlank(message = "Veiculo obrigatorio")
     Veiculo veiculo;
-    @NotBlank(message = "Data obrigatorio")
+    @NotBlank(message = "Data de inicio obrigatorio")
     LocalDateTime datainicio;
+    @NotBlank(message = "Data de fim obrigatorio")
+    LocalDateTime datafim;
 
     public Cliente getCliente() {
         return cliente;
@@ -37,6 +39,14 @@ public class Reservadto {
 
     public void setDatainicio(LocalDateTime datainicio) {
         this.datainicio = datainicio;
+    }
+
+    public LocalDateTime getDatafim() {
+        return datafim;
+    }
+
+    public void setDatafim(LocalDateTime datafim) {
+        this.datafim = datafim;
     }
     
 }

@@ -27,6 +27,7 @@ public class Servicereserva {
         reserva.setCliente(dto.getCliente());
         reserva.setVeiculo(dto.getVeiculo());
         reserva.setDatainicio(dto.getDatainicio());
+        reserva.setDatafim(dto.getDatafim());
 
         return reserva;
     }
@@ -36,6 +37,7 @@ public class Servicereserva {
         reserva.setCliente(dto.getCliente());
         reserva.setVeiculo(dto.getVeiculo());
         reserva.setDatainicio(dto.getDatainicio());
+        reserva.setDatafim(dto.getDatafim());
 
         return reserva;
     }
@@ -54,7 +56,8 @@ public class Servicereserva {
         Veiculo veiculores = reserva.getVeiculo();
         service1.getclienteporcodigo(clienteres.getCodigo());
         service2.getveiculoporcodigo(veiculores.getCodigo());
-        return repositorio.salvarreserva(reserva);
+        Optional<Reserva> res = repositorio.salvarreserva(reserva,service2.getveiculoporcodigo(veiculores.getCodigo()));
+        return res.orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND,"Náo foi possível cadastrar a reserva, algum dado foi inserido de forma incorreta"));
     }
 
     public void removerreserva(int codigo){

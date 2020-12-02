@@ -3,6 +3,7 @@ package afpoo.afpoo.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -39,7 +40,7 @@ public class Controllerreserva {
     }
 
     @PostMapping()
-    public ResponseEntity<Void> salvar(@RequestBody Reservadto reservadto,HttpServletRequest request,UriComponentsBuilder builder){
+    public ResponseEntity<Void> salvar(@Valid @RequestBody Reservadto reservadto,HttpServletRequest request,UriComponentsBuilder builder){
         Reserva reserva = service.criarfromDTOreserva(reservadto);
         reserva = service.salvarreserva(reserva);
         UriComponents uriComponents = builder.path(request.getRequestURI()+"/"+reserva.getNum()).build();
@@ -51,5 +52,7 @@ public class Controllerreserva {
         service.removerreserva(codigo);
         return ResponseEntity.noContent().build();
     }
+
+    
     
 }

@@ -3,6 +3,7 @@ package afpoo.afpoo.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -42,7 +43,7 @@ public class Controllerveiculo {
     }
 
     @PostMapping()
-    public ResponseEntity<Void> salvar(@RequestBody Veiculodto veiculodto, HttpServletRequest request,UriComponentsBuilder builder){
+    public ResponseEntity<Void> salvar(@Valid @RequestBody Veiculodto veiculodto, HttpServletRequest request,UriComponentsBuilder builder){
         Veiculo veiculo = service.criarfromDTOVeiculo(veiculodto);
         veiculo = service.salvarveiculo(veiculo);
         UriComponents uriComponents = builder.path(request.getRequestURI()+"/"+veiculo.getCodigo()).build();

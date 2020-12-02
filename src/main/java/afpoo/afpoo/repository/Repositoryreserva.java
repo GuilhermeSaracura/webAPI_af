@@ -1,5 +1,8 @@
 package afpoo.afpoo.repository;
 
+import java.time.DayOfWeek;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -38,10 +41,17 @@ public class Repositoryreserva {
         return Optional.empty();
     }
 
-    public Reserva salvarreserva(Reserva reserva){
-        reserva.setNum(code++);
-        reservas.add(reserva);
-        return reserva;
+    public Optional<Reserva> salvarreserva(Reserva reserva, Veiculo veiculo){
+        if(reserva.getDatainicio().isAfter(LocalDateTime.now()) && reserva.getDatainicio().getDayOfWeek()!=DayOfWeek.SUNDAY){
+            if(reserva.getDatafim().isAfter(reserva.getDatainicio()) && reserva.getDatafim().getDayOfWeek()!=DayOfWeek.SUNDAY){
+                double horas = ChronoUnit.HOURS.between(reserva.getDatainicio(), reserva.getDatafim());
+                reserva.setValorfinal(horas*veiculo.getValord());
+                reserva.setNum(code++);
+                reservas.add(reserva);
+                return Optional.of(reserva);
+            }
+        }
+        return Optional.empty();
     }
 
     public void removerreserva(Reserva reserva){
@@ -49,36 +59,32 @@ public class Repositoryreserva {
     }
 
     public Optional<List<Reserva>> getreservaporcodigocliente(int codigo){
-        List<Reserva> reservas=null;
+        List<Reserva> reser = new ArrayList<Reserva>();
         for(int i=0;i<reservas.size();i++){
             Reserva res=reservas.get(i);
             Cliente cliente = res.getCliente();
             if(cliente.getCodigo()==codigo){
-                reservas.add(res);
+                reser.add(res);
             }
         }
-        if(reservas==null){
-            return Optional.of(reservas);
-        }
-        else{
+        if(reser.isEmpty()){
             return Optional.empty();
         }
+        return Optional.of(reser);
     }
 
     public Optional<List<Reserva>> getreservaporcodigoveiculo(int codigo){
-        List<Reserva> reservas=null;
+        List<Reserva> reser = new ArrayList<Reserva>();
         for(int i=0;i<reservas.size();i++){
             Reserva res=reservas.get(i);
             Veiculo veiculo = res.getVeiculo();
             if(veiculo.getCodigo()==codigo){
-                reservas.add(res);
+                reser.add(res);
             }
         }
-        if(reservas==null){
-            return Optional.of(reservas);
-        }
-        else{
+        if(reser.isEmpty()){
             return Optional.empty();
         }
+        return Optional.of(reser);
     }
 }
