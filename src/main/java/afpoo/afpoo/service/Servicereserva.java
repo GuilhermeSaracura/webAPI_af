@@ -28,7 +28,6 @@ public class Servicereserva {
         reserva.setVeiculo(dto.getVeiculo());
         reserva.setDatainicio(dto.getDatainicio());
         reserva.setDatafim(dto.getDatafim());
-
         return reserva;
     }
 
@@ -38,7 +37,6 @@ public class Servicereserva {
         reserva.setVeiculo(dto.getVeiculo());
         reserva.setDatainicio(dto.getDatainicio());
         reserva.setDatafim(dto.getDatafim());
-
         return reserva;
     }
 
@@ -62,7 +60,7 @@ public class Servicereserva {
 
     public void removerreserva(int codigo){
         repositorio.removerreserva(getreservaporcodigo(codigo));
-    }
+    }  
 
     public List<Reserva> getreservaporcodigocliente(int codigo){
         Optional<List<Reserva>> res = repositorio.getreservaporcodigocliente(codigo);
@@ -72,6 +70,15 @@ public class Servicereserva {
     public List<Reserva> getreservaporcodigoveiculo(int codigo){
         Optional<List<Reserva>> res = repositorio.getreservaporcodigoveiculo(codigo);
         return res.orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND,"Náo foi encontrado nenhuma reserva"));
+    }
+
+    public Reserva atualizar(Reserva reserva){
+        Cliente clienteres = reserva.getCliente();
+        Veiculo veiculores = reserva.getVeiculo();
+        service1.getclienteporcodigo(clienteres.getCodigo());
+        service2.getveiculoporcodigo(veiculores.getCodigo());
+        Optional<Reserva> op = repositorio.atualizar(reserva);
+        return op.orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND,"Veiculo náo atualizado"));
     }
 
 }

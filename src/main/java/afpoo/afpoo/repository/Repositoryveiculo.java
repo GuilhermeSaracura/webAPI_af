@@ -45,4 +45,16 @@ public class Repositoryveiculo {
     public void removerveiculo(Veiculo veiculo){
         veiculos.remove(veiculo);
     }
+
+    public Optional<Veiculo> atualizar(Veiculo veiculo){
+        Veiculo vei =getveiculoporcodigo(veiculo.getCodigo()).get();
+        if(vei!=null){
+            vei.setModelo(veiculo.getModelo());
+            vei.setValord(veiculo.getValord());
+            return Optional.of(vei);
+        }
+        else{
+            return Optional.empty();
+        }
+    }
 }

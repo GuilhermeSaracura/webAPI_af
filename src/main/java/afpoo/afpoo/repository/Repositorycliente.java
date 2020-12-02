@@ -45,4 +45,17 @@ public class Repositorycliente {
     public void removercliente(Cliente cliente){
         clientes.remove(cliente);
     }
+
+    public Optional<Cliente> atualizar(Cliente cliente){
+        Cliente cli =getclienteporcodigo(cliente.getCodigo()).get();
+        if(cli!=null){
+            cli.setCpf(cliente.getCpf());
+            cli.setNome(cliente.getNome());
+            cli.setEndereço(cliente.getEndereço());
+            return Optional.of(cli);
+        }
+        else{
+            return Optional.empty();
+        }
+    }
 }

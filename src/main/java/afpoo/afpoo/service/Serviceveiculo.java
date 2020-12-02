@@ -50,4 +50,10 @@ public class Serviceveiculo {
     public void removerveiculo(int codigo){
         repositorio.removerveiculo(getveiculoporcodigo(codigo));
     }
+
+    public Veiculo atualizar(Veiculo veiculo){
+        getveiculoporcodigo(veiculo.getCodigo());
+        Optional<Veiculo> op = repositorio.atualizar(veiculo);
+        return op.orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND,"Veiculo náo atualizado"));
+    }
 }

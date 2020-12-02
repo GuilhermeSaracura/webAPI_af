@@ -87,4 +87,29 @@ public class Repositoryreserva {
         }
         return Optional.of(reser);
     }
+
+    public Optional<Reserva> atualizar(Reserva reserva){
+        Reserva res =getreservaporcodigo(reserva.getNum()).get();
+        if(res.getDatainicio().isAfter(LocalDateTime.now()) && reserva.getDatainicio().getDayOfWeek()!=DayOfWeek.SUNDAY){
+            if(res.getDatafim().isAfter(reserva.getDatainicio()) && reserva.getDatafim().getDayOfWeek()!=DayOfWeek.SUNDAY){
+                if(res!=null){
+                    res.setCliente(reserva.getCliente());
+                    res.setVeiculo(reserva.getVeiculo());
+                    res.setDatainicio(reserva.getDatainicio());
+                    res.setDatafim(reserva.getDatafim());
+                    double horas = ChronoUnit.HOURS.between(reserva.getDatainicio(), reserva.getDatafim());
+                    res.setValorfinal(horas*reserva.getVeiculo().getValord());
+                    return Optional.of(res);
+                }
+                return Optional.empty();
+            }
+            else{
+                return Optional.empty();
+            }
+        }
+        else{
+            return Optional.empty();
+        }
+
+    }
 }

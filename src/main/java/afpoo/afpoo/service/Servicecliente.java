@@ -52,4 +52,10 @@ public class Servicecliente {
     public void removercliente(int codigo){
         repositorio.removercliente(getclienteporcodigo(codigo));
     }
+
+    public Cliente atualizar(Cliente cliente){
+        getclienteporcodigo(cliente.getCodigo());
+        Optional<Cliente> op = repositorio.atualizar(cliente);
+        return op.orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND,"Cliente náo atualizado"));
+    }
 }
