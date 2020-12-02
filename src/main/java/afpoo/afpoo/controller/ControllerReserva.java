@@ -58,7 +58,7 @@ public class Controllerreserva {
     public ResponseEntity<Reserva> atualizar(@Valid @PathVariable int codigo, @RequestBody Reservadto reservaDTO){   
             Reserva reserva = service.atualizarfromDTOreserva(reservaDTO);
             reserva.setNum(codigo);
-            // reserva = service.update(reserva);
+            reserva = service.atualizar(reserva);
             return ResponseEntity.ok(reserva);
        
     }
