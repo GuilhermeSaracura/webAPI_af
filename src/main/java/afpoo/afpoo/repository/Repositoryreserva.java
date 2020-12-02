@@ -90,9 +90,9 @@ public class Repositoryreserva {
 
     public Optional<Reserva> atualizar(Reserva reserva){
         Reserva res =getreservaporcodigo(reserva.getNum()).get();
-        if(res.getDatainicio().isAfter(LocalDateTime.now()) && reserva.getDatainicio().getDayOfWeek()!=DayOfWeek.SUNDAY){
-            if(res.getDatafim().isAfter(reserva.getDatainicio()) && reserva.getDatafim().getDayOfWeek()!=DayOfWeek.SUNDAY){
-                if(res!=null){
+        if(res!=null){
+            if(res.getDatainicio().isAfter(LocalDateTime.now()) && reserva.getDatainicio().getDayOfWeek()!=DayOfWeek.SUNDAY){
+                if(res.getDatafim().isAfter(reserva.getDatainicio()) && reserva.getDatafim().getDayOfWeek()!=DayOfWeek.SUNDAY){
                     res.setCliente(reserva.getCliente());
                     res.setVeiculo(reserva.getVeiculo());
                     res.setDatainicio(reserva.getDatainicio());
