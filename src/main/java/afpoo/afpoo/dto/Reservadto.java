@@ -2,19 +2,21 @@ package afpoo.afpoo.dto;
 
 import java.time.LocalDateTime;
 
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.PastOrPresent;
 
 import afpoo.afpoo.model.Cliente;
 import afpoo.afpoo.model.Veiculo;
 
 public class Reservadto {
-    @NotBlank(message = "Cliente obrigatorio")
     Cliente cliente;
-    @NotBlank(message = "Veiculo obrigatorio")
     Veiculo veiculo;
-    @NotBlank(message = "Data de inicio obrigatorio")
+    @NotEmpty
+    @PastOrPresent
     LocalDateTime datainicio;
-    @NotBlank(message = "Data de fim obrigatorio")
+    @NotEmpty
+    @Future
     LocalDateTime datafim;
 
     public Cliente getCliente() {
