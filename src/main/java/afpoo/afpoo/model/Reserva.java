@@ -2,16 +2,17 @@ package afpoo.afpoo.model;
 
 import java.time.LocalDateTime;
 
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.PastOrPresent;
 
 public class Reserva {
     int num;
     Cliente cliente;
     Veiculo veiculo;
     @NotEmpty
+    @PastOrPresent
     LocalDateTime datainicio;
-    @NotBlank(message = "Data de fim obrigatorio")
+    @NotEmpty
     LocalDateTime datafim;
     double valorfinal;
 
