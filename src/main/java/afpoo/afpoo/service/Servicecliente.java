@@ -23,7 +23,6 @@ public class Servicecliente {
         cliente.setCpf(dto.getCpf());
         cliente.setNome(dto.getNome());
         cliente.setEndereço(dto.getEndereço());
-
         return cliente;
     }
 
@@ -32,7 +31,6 @@ public class Servicecliente {
         cliente.setCpf(dto.getCpf());
         cliente.setNome(dto.getNome());
         cliente.setEndereço(dto.getEndereço());
-
         return cliente;
     }
 

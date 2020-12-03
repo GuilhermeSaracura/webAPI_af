@@ -22,7 +22,6 @@ public class Serviceveiculo {
         Veiculo veiculo = new Veiculo();
         veiculo.setModelo(dto.getModelo());
         veiculo.setValord(dto.getValord());
-
         return veiculo;
     }
 
