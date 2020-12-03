@@ -56,10 +56,9 @@ public class Controllerreserva {
 
     @PutMapping("/{codigo}")
     public ResponseEntity<Reserva> atualizar(@Valid @PathVariable int codigo, @RequestBody Reservadto reservaDTO){   
-            Reserva reserva = service.atualizarfromDTOreserva(reservaDTO);
-            reserva.setNum(codigo);
-            reserva = service.atualizar(reserva);
-            return ResponseEntity.ok(reserva);
-       
+        Reserva reserva = service.atualizarfromDTOreserva(reservaDTO);
+        reserva.setNum(codigo);
+        reserva = service.atualizar(reserva);
+        return ResponseEntity.ok(reserva);
     }
 }
