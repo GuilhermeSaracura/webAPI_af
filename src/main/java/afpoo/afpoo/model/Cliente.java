@@ -4,7 +4,7 @@ public class Cliente {
     int codigo;
     String nome;
     String Endereço;
-    int cpf;
+    String cpf;
 
     public int getCodigo() {
         return codigo;
@@ -30,11 +30,11 @@ public class Cliente {
         Endereço = endereço;
     }
 
-    public int getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(int cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 }

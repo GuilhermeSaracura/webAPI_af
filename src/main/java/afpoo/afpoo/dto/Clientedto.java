@@ -1,15 +1,18 @@
 package afpoo.afpoo.dto;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 
 public class Clientedto {
 
     @NotBlank(message = "Nome obrigatorio")
     String nome;
     @NotBlank(message = "Endereço obrigatorio")
-    String Endereço;
+    String endereco;
     @NotBlank(message = "CPF obrigatorio")
-    int cpf;
+    @Size(min=9, max=9)
+    String cpf;
 
     public String getNome() {
         return nome;
@@ -19,19 +22,19 @@ public class Clientedto {
         this.nome = nome;
     }
 
-    public String getEndereço() {
-        return Endereço;
+    public String getEndereco() {
+        return endereco;
     }
 
-    public void setEndereço(String endereço) {
-        Endereço = endereço;
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
     }
 
-    public int getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(int cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 }

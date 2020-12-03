@@ -1,11 +1,12 @@
 package afpoo.afpoo.dto;
 
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 
 public class Veiculodto {
     @NotBlank(message = "Modelo obrigatorio")
     String modelo;
-    @NotBlank(message = "Valor obrigatorio")
+    @Digits(integer=6, fraction=2)
     double valord;
 
     public String getModelo() {
