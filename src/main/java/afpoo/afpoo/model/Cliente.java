@@ -1,9 +1,16 @@
 package afpoo.afpoo.model;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 public class Cliente {
     int codigo;
+    @NotBlank(message = "Nome obrigatorio")
     String nome;
-    String Endereço;
+    @NotBlank(message = "Endereço obrigatorio")
+    String endereco;
+    @NotBlank(message = "CPF obrigatorio")
+    @Size(min=9, max=9)
     String cpf;
 
     public int getCodigo() {
@@ -22,12 +29,12 @@ public class Cliente {
         this.nome = nome;
     }
 
-    public String getEndereço() {
-        return Endereço;
+    public String getendereco() {
+        return endereco;
     }
 
-    public void setEndereço(String endereço) {
-        Endereço = endereço;
+    public void setendereco(String endereco) {
+        this.endereco = endereco;
     }
 
     public String getCpf() {

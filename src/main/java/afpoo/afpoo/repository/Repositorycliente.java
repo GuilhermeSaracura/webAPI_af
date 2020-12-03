@@ -51,7 +51,7 @@ public class Repositorycliente {
         if(cli!=null){
             cli.setCpf(cliente.getCpf());
             cli.setNome(cliente.getNome());
-            cli.setEndereço(cliente.getEndereço());
+            cli.setendereco(cliente.getendereco());
             return Optional.of(cli);
         }
         else{
