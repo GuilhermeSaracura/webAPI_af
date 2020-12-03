@@ -2,6 +2,7 @@ package afpoo.afpoo.model;
 
 import java.time.LocalDateTime;
 
+import javax.validation.constraints.Future;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.PastOrPresent;
 
@@ -13,6 +14,7 @@ public class Reserva {
     @PastOrPresent
     LocalDateTime datainicio;
     @NotEmpty
+    @Future
     LocalDateTime datafim;
     double valorfinal;
 
